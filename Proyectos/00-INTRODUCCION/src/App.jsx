@@ -1,35 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// --- IMPORTS ---
+import './App.css';
+import { Contador } from './components/UseState/Contador';
+import { ContadorDoble } from './components/UseState/ContadorDobleBest';
+import { DarkLightMode } from './components/UseState/DarkLightMode';
 
-function App() {
-  const [count, setCount] = useState(0)
+// --- VARIABLES GLOBALES ---
+
+export const App = () => {
+
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <DarkLightMode></DarkLightMode>
     </>
   )
+
+  // // --- HOOKS ---
+
+  // // --- VARIABLES LOCALES ---
+  // const texto = "Hola mundo";
+  // const numero = 4;
+  // const array = ['Manzana', 'Platano', 'Pera', 'Fresa', 'Uva'];
+  // const objeto = {
+  //   nombre: 'Pedro',
+  //   edad: 20,
+  // };
+
+  // // --- FUNCTIONES DEL COMPONENTE ---
+  // return (
+  //   <>
+  //     <h1>Ejemplo básico JSX</h1>
+  //     <h2>Variables en JSX y objetos</h2>
+  //     <div>
+  //       <h3>La variable texto vale: {texto}</h3>
+  //       <h3>La variable numero vale: {numero}</h3>
+  //       <h3>La variable array vale: 
+  //         <ul>
+  //           {array.map((fruta, index) => (
+  //             <li key={index}>{fruta}</li>
+  //           ))}
+  //         </ul>
+  //       </h3>
+  //       <h3>La variable objeto vale: {objeto.nombre} y {objeto.edad}</h3>
+  //     </div>
+  //   </>
+  // )
 }
 
-export default App
+export default App;
