@@ -1,18 +1,14 @@
 // --- IMPORTS ---
-import './App.css';
-import { Contador } from './components/UseState/Contador';
-import { ContadorDoble } from './components/UseState/ContadorDobleBest';
-import { DarkLightMode } from './components/UseState/DarkLightMode';
+// import './App.css';
+import ToDoList from './components/UseState/ToDoList';
 
 // --- VARIABLES GLOBALES ---
 
 export const App = () => {
 
-
-
   return (
     <>
-      <DarkLightMode></DarkLightMode>
+      <ToDoList></ToDoList>
     </>
   )
 

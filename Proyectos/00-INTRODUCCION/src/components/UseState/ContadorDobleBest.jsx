@@ -7,9 +7,10 @@ export const ContadorDoble = () => {
     ana: 0,
   };
   const [friends, setFriends] = useState(initialState);
+
   
   function handlerIncrementFriend(friendName) {
-    setFriends({...friends, [friendName]: friends.friendName + 1})
+    setFriends({...friends, [friendName]: friends[friendName] + 1})
   }
 
   return (

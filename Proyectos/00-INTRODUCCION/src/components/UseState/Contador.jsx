@@ -8,7 +8,7 @@ export const Contador = () => {
 
     setCounter(counter + parseInt(document.getElementById('num').value))
     // Así es como se debería de hacer para asegurarnos traer siempre el último valor de la variable estado
-    setCounter((prevCounter) => prevCounter + 1)
+    setCounter((prevCounter) => prevCounter + 1)  
   }
 
   function handleDecrement() {
