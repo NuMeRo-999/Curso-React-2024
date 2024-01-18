@@ -1,6 +1,6 @@
 // --- IMPORTS ---
 // import './App.css';
-import ToDoList from './components/UseState/ToDoList';
+import GitHubUsers from './components/UseEffect/GitHubUserCardApi/GitHubUsers';
 
 // --- VARIABLES GLOBALES ---
 
@@ -8,7 +8,7 @@ export const App = () => {
 
   return (
     <>
-      <ToDoList></ToDoList>
+      <GitHubUsers></GitHubUsers>
     </>
   )
 
