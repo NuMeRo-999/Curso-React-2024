@@ -9,6 +9,11 @@ const GitHubUsers = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [selectedUser, setSelectedUser] = useState(null)
+
+  const handleOpenModal = (user) => setSelectedUser(user)
+  const handleCloseModal = () => setSelectedUser(null)
+
   useEffect(() => {
     
     const fetchData = async()  => {
@@ -42,7 +47,8 @@ const GitHubUsers = () => {
                   key={user.id} 
                   avatar_url={user.avatar_url} 
                   login={user.login} 
-                  html_url={user.html_url} 
+                  html_url={user.html_url}
+                  openModal={()=>handleOpenModal(user)}
                 /> 
               </>
             ))
@@ -50,7 +56,9 @@ const GitHubUsers = () => {
           }
           </div>
           <Modal
-            isOpen=""
+            isOpen={!!selectedUser}
+            imgURL={selectedUser?.avatar_url}
+            onClose={handleCloseModal}
           />
         </>
         }
