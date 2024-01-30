@@ -1,9 +1,11 @@
 import { useState } from "react";
 import useDataApi from "../hooks/useDataApi";
+import Spinner from "./Spinner";
+import MovieCard from "./MovieCard";
 
 const MovieSearchForm = () => {
   const apiEndPoint = 'https://api.themoviedb.org/3/discover/movie?&language=es-es&sort_by=popularity.desc&api_key='+import.meta.env.VITE_API_KEY;
-  // const { data, error, loading } = useDataApi(apiEndPoint);
+  const { data, error, loading } = useDataApi(apiEndPoint);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([])
@@ -42,7 +44,7 @@ const MovieSearchForm = () => {
           {/* Sentencias de cortocircuito */}
           {loading && <Spinner/>}
           {error && <h1>Error</h1>}
-          {filteredMovies.map()}
+          { (searchQuery ? filteredMovies : data?.results || []).map(movie => (<MovieCard key={movie.id} movie={movie} />)) }
         </div>        
       </div>
     </>
