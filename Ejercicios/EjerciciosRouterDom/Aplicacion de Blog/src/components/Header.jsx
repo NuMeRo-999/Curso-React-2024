@@ -5,7 +5,7 @@ const Header = () => {
     <header className="bg-gray-800 text-white p-5 flex justify-between items-center font-bold ">
       <div className='flex items-center gap-5'>
         
-        <span className='text-2xl font-bold '>Api Peliculas -Usando React Router Dom-</span>
+        <span className='text-2xl font-bold '>Api Posts -Usando React Router Dom y JsonPlaceHolder-</span>
       </div>
       <nav>
         <ul className='flex space-x-12 mx-10'>

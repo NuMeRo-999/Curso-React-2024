@@ -12,8 +12,8 @@ const MovieCard = ({movie}) => {
   }
 
   return (
-    <div className="w-60 h-100 bg-gray-800 p-3 flex flex-col gap-4 rounded-br3xl justify-between hover:shadow-2xl hover:bg-black transition-all duration-500 ease-in-out">
-      <img src={imgUrl} alt={title}  className="size-48 object-cover mb-4 rounded-md mx-auto"/>
+    <div className="w-60 h-100 bg-gray-800 p-3 flex flex-col gap-4 rounded-br3xl justify-between hover:shadow-2xl hover:bg-black transition-all duration-500 ease-in-out rounded-br-xl">
+      <img src={imgUrl} alt={title}  className="size-48 mb-4 rounded-md mx-auto object-fill"/>
       <div className="flex flex-col gap-4" >
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">

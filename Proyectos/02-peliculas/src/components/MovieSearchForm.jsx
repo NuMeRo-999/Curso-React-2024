@@ -39,7 +39,15 @@ const MovieSearchForm = () => {
           <button type="submit" className="ml-2 bg-sky-700 text-white py-2 px-4 rounded-md focus:outline-none">Buscar</button>
           <button className={`ml-2 bg-red-500 text-white py-2 px-4 rounded-md focus:outline-none ${searchQuery ? 'block' : 'hidden'}`} onClick={handleSearchSubmit}>Borrar</button>
         </form>
+        <h1 className="mt-10 text-5xl font-bold">Peliculas Populares:</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-10 w-5/6">
+          {/* Sentencias de cortocircuito */}
+          {loading && <Spinner/>}
+          {error && <h1>Error</h1>}
+          { (searchQuery ? filteredMovies : data?.results || []).map(movie => (<MovieCard key={movie.id} movie={movie} />)) }
+        </div>        
 
+        <h1 className="mt-10 text-5xl font-bold">Peliculas Populares:</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mt-10 w-5/6">
           {/* Sentencias de cortocircuito */}
           {loading && <Spinner/>}
