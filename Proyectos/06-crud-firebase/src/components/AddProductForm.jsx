@@ -23,7 +23,6 @@ const AddProductForm = ({actualizarProductos}) => {
         }
       )
 
-      // ventana OK
       Swal.fire({
         title: "¡Insercción correcta!",
         text: "Datos del producto insertados correctamente",

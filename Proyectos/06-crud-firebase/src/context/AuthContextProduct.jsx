@@ -1,24 +1,27 @@
 import { createContext, useContext, useState } from "react";
 
-const AuthContext = createContext()
+// createContext Provider usecontext
+const AuthContext = createContext();
 
-export const AuhtProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
+  // en el componente del contexto CREAR TODAS FUNCIONES QUE NECESITEIS PASAR
   const [userFirebase, setUserFirebase] = useState(null);
-
-  const singInFirebase = (userData) => {
+  const signInFirebase = (userData) => {
     setUserFirebase(userData);
-  }
-
-  const singOutFirebase = () => {
+  };
+  const signOutFirebase = () => {
     setUserFirebase(null);
-  }
+  };
 
   return (
-    <AuthContext.Provider value={{ userFirebase, setUserFirebase, singInFirebase, singOutFirebase }}>
+    <AuthContext.Provider
+      value={{ userFirebase, signInFirebase, signOutFirebase }}
+    >
       {children}
     </AuthContext.Provider>
-  )
+  );
+};
 
-}
-
-export const AuthContextProduct = () => useContext(AuthContext);
+export const useAuthProduct = () => {
+  return useContext(AuthContext);
+};

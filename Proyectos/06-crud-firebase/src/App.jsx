@@ -6,7 +6,7 @@ import PaymentPage from "./pages/PaymentPage"
 import ErrorPage from "./pages/ErrorPage"
 import EditProductPage from "./pages/EditProductPage"
 import RootPage from "./pages/RootPage"
-import { ProductosProvider } from "./context/ProductosProvider";
+import { AuthProvider } from "./context/authContextProduct";
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
       errorElement: <ErrorPage/>,
       children: [
         {
-          element: <ProtectedRoute isActive={true} redirectPath='/login'/>,
+          element: <ProtectedRoute redirectPath='/login'/>,
           children: [
             { index: true, element: <HomePage/> },
             { path: 'productos/:productId', element: <EditProductPage/> },
@@ -32,9 +32,9 @@ function App() {
 
   return (
     <>
-      <ProductosProvider>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </ProductosProvider>
+    </AuthProvider>
     </>
   )
 }

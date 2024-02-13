@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContextProduct } from "../context/authContextProduct";
 import { singWithGoogle } from "../firebase/productosApi";
-import { useProductosContext } from "../context/ProductosContext";
+import { useAuthProduct } from "../context/authContextProduct";
 
-const Login = ({setLogin}) => {
+const Login = () => {
 
   // const {data, error, loading} = useDataApi('https://fakestoreapi.com/users');
   // const navigate = useNavigate();
@@ -24,14 +23,12 @@ const Login = ({setLogin}) => {
   //   }
   // }
 
-  const [error, setError] = useState(null);
-  const navigate = useNavigate()
-  // const { singInFirebase } = AuthContextProduct;
-  const { singInFirebase } = useProductosContext();
-
-  const handleSingIn = async () => { 
-    await singWithGoogle( singInFirebase , setError, navigate )
-  }
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+  const { signInFirebase } = useAuthProduct();
+  const handleSingIn = async () => {
+    await singWithGoogle(signInFirebase, setError, navigate);
+  };
 
   return (
     <>

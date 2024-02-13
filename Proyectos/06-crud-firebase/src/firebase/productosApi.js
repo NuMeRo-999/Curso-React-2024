@@ -1,7 +1,6 @@
-import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "./firebase";
-import { GoogleAuthProvider, browserSessionPersistence, getAuth, setPersistence, signInWithPopup } from "firebase/auth";
-import { AuthContextProduct } from "../context/authContextProduct";
+import { GoogleAuthProvider, browserSessionPersistence, getAuth, setPersistence, signInWithPopup, signOut } from "firebase/auth";
 
 // -- Datos de la colección --
 const ProductosCollection = collection(db ,'Crud-react-productos')
@@ -29,6 +28,23 @@ export const getProductos = async () => {
   }
 }
 
+// Cargar los datos de un producto cuyo id es x
+export const getProductById = async (id) => {
+  try {
+    const productDocRef = doc(ProductosCollection, id);
+    const productDoc = await getDoc(productDocRef);
+    if(productDoc.exists()) {
+      return { ...productDoc.data(), id: productDoc.id };
+    } else {
+      console.error('El producto con id dado no existe.');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error al obtener el producto:', error);
+    throw error;
+  }
+}
+
 export const eliminarProducto = async (idProducto) => {
   try {
     await deleteDoc(doc(ProductosCollection, idProducto));
@@ -39,18 +55,37 @@ export const eliminarProducto = async (idProducto) => {
   }
 }
 
-export const singWithGoogle = async (setError, navigate) => {
+export const editProduct = async (idProducto, newData) => {
+  try {
+    const productDocRef = doc(ProductosCollection, idProducto);
+    await updateDoc(productDocRef, newData);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const singWithGoogle = async (signInFirebase, setError, navigate) => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   try {
-      await setPersistence(auth, browserSessionPersistence);
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      const { singInFirebase } = AuthContextProduct(); // Accede a la función del contexto
-      singInFirebase(user); // Llama a la función con el usuario
-      console.log(user);
-      navigate('/');
+    await setPersistence(auth, browserSessionPersistence);
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    signInFirebase(user);
+    console.log(user);
+    navigate("/");
   } catch (error) {
-      setError(`Error al iniciar sesión: ${error}`);
+    setError(`Error  al iniciar sesión: ${error}`);
+  }
+};
+
+export const cerrarSesion = async () => {
+  const auth = getAuth();
+  try {
+    await signOut(auth);
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false
   }
 }
